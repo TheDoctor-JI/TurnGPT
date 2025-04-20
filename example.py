@@ -10,26 +10,36 @@ for k, v in vars(args).items():
     print(f"{k}: {v}")
 
 # Fresh Initialization
-model = TurnGPT(
-    pretrained_model_name_or_path=args.pretrained_model_name_or_path,
-    trp_projection_steps=args.trp_projection_steps,
-    trp_projection_type=args.trp_projection_type,
-    weight_loss=args.weight_loss,
-    weight_eos_token=args.weight_eos_token,
-    weight_regular_token=args.weight_regular_token,
-    learning_rate=args.learning_rate,
-    dropout=args.dropout,
-    pretrained=args.pretrained,
-    no_train_first_n=args.no_train_first_n,
-    omit_dialog_states=args.omit_dialog_states,
-)
+
+# model = TurnGPT(
+#     pretrained_model_name_or_path=args.pretrained_model_name_or_path,
+#     # pretrained_model_name_or_path=path,
+#     trp_projection_steps=args.trp_projection_steps,
+#     trp_projection_type=args.trp_projection_type,
+#     weight_loss=args.weight_loss,
+#     weight_eos_token=args.weight_eos_token,
+#     weight_regular_token=args.weight_regular_token,
+#     learning_rate=args.learning_rate,
+#     dropout=args.dropout,
+#     pretrained=args.pretrained,
+#     no_train_first_n=args.no_train_first_n,
+#     omit_dialog_states=args.omit_dialog_states,
+# )
+
+
 
 # These must be called on a freash initialization (later done when loading the model)
 # on checkpoint-save the `tokenizer` is saved with the model.
-# on checkpoint-load the `tokenizer` is loaded and the weights extended automatically
-model.init_tokenizer()  # required for fresh model (saved on checkpoint)
-model.initialize_special_embeddings()  # required for fresh model (also performed on load_checkpoint)
-model.print_parameters()
+# # on checkpoint-load the `tokenizer` is loaded and the weights extended automatically
+# model.init_tokenizer()  # required for fresh model (saved on checkpoint)
+# model.initialize_special_embeddings()  # required for fresh model (also performed on load_checkpoint)
+# model.print_parameters()
+
+
+path = '/home/eeyifanshen/e2e_audio_LLM/TurnGPT/runs/TurnGPT/TurnGPT_8ae66gi9/epoch=6_val_loss=1.7988.ckpt'
+
+model = TurnGPT.load_from_checkpoint(path)
+
 
 print(model.tokenizer)
 # PreTrainedTokenizerFast(name_or_path='gpt2', vocab_size=50257,
