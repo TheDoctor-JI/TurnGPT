@@ -68,7 +68,7 @@ class Utils:
             idx = idx.item()
         s = self.tokenizer.convert_ids_to_tokens(idx)
         s = self.tokenizer.convert_tokens_to_string(
-            s.strip()
+            [s.strip()] #Yifan edit
         )  # remove prefix space/symbol
         return s
 

@@ -1,4 +1,4 @@
-train="python turngpt/train.py --gpus -1 --batch_size 2 --accumulate_grad_batches 10"
+train="python turngpt/train.py --gpus -1 --batch_size 2 --accumulate_grad_batches 10 --datasets daily_dialog meta_woz"
 
 # Run on a small gpu so could not have large batch size thus the accumulate_grad_batches
 
